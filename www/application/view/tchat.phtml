@@ -1,0 +1,33 @@
+<div id="conteneur" style="width:94%; margin-bottom:200px;">
+    <h1>Mon tchat, connectez en tant que <?php echo $_SESSION["pseudo"];?></h1>
+    <div id="connected">
+	
+    </div>
+  
+  	<div id="tchat">
+	 <?php
+		$sql = "SELECT * FROM messages ORDER BY date DESC LIMIT 15";
+		$req = mysql_query($sql) or die(mysql_error());
+		$d = array();
+		while($data = mysql_fetch_assoc($req)){
+			$d[] = $data;
+		}
+		for($i=count($d)-1;$i>=0;$i--){			
+		?>
+			<p><strong><?php echo $d[$i]["pseudo"]; ?></strong> (<?php echo date("d/m/Y H:i:s",$d[$i]["date"]); ?>) : <?php echo htmlentities(utf8_decode($d[$i]["message"])); ?></p>
+		<?php
+		}
+	 ?>
+    </div>
+  </div>
+  
+  <div id="tchatForm" style="position:fixed;bottom:0;width:100%;">
+       <form method="post" action="#">
+	  <div style="margin-right:110px;">
+	      <textarea name="message" style="width:100%;"></textarea>
+	  </div>
+	  <div style="position:absolute; top:12px; right:0;">
+	      <input type="submit" value="Envoyer"/>
+	  </div>
+	</form>      
+  </div>
