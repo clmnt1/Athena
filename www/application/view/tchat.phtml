@@ -4,22 +4,6 @@
 	
     </div>
   
-  	<div id="tchat">
-	 <?php
-		$sql = "SELECT * FROM messages ORDER BY date DESC LIMIT 15";
-		$req = mysql_query($sql) or die(mysql_error());
-		$d = array();
-		while($data = mysql_fetch_assoc($req)){
-			$d[] = $data;
-		}
-		for($i=count($d)-1;$i>=0;$i--){			
-		?>
-			<p><strong><?php echo $d[$i]["pseudo"]; ?></strong> (<?php echo date("d/m/Y H:i:s",$d[$i]["date"]); ?>) : <?php echo htmlentities(utf8_decode($d[$i]["message"])); ?></p>
-		<?php
-		}
-	 ?>
-    </div>
-  </div>
   
   <div id="tchatForm" style="position:fixed;bottom:0;width:100%;">
        <form method="post" action="#">

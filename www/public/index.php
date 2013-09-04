@@ -23,6 +23,7 @@ require_once LIB_PATH . DS . 'ControllerInterface.php';
 require_once LIB_PATH . DS . 'View.php';
 require_once LIB_PATH . DS . 'Controller.php';
 
+require_once MOD_PATH . DS . 'Connect.php';
 require_once MOD_PATH . DS . 'Authentification.php';
 
 // Instanciation des classes

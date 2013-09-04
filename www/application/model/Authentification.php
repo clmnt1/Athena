@@ -7,6 +7,8 @@ class Authentification
 	
 	public function __construct(){
 		require_once APP_PATH . DS . '/config.php';
+		$connect = new Connect();
+		$connexion = $connect->connexion(); 
 	}
 	
 	public function isConnected()
