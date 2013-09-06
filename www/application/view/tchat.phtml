@@ -1,9 +1,10 @@
+
 <div id="conteneur" style="width:94%; margin-bottom:200px;">
-    <h1>Mon tchat, connectez en tant que <?php echo $_SESSION["pseudo"];?></h1>
+    <h1>Mon tchat, connectez en tant que <?php echo $this->objUser->pseudo ?></h1>
     <div id="connected">
 	
     </div>
-  
+    
   
   <div id="tchatForm" style="position:fixed;bottom:0;width:100%;">
        <form method="post" action="#">

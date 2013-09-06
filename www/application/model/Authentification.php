@@ -33,10 +33,11 @@ class Authentification
 			$auth = false;
 		}else{
 			$auth = true;
-			$sqlName = "SELECT user_pseudo FROM users WHERE user_login = '" . $params['login'] . "'";
+			$sqlName = "SELECT user_pseudo, user_id FROM users WHERE user_login = '" . $params['login'] . "'";
 			$reqName = $connexion->query($sqlName);
-			$resultName = $reqName->fetch();		
+			$resultName = $reqName->fetch();
 			$_SESSION['pseudo'] = utf8_encode($resultName[0]);
+			$_SESSION['id'] = $resultName[1];
 		}
 		
 		return $resultAuth['result'];

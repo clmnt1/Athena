@@ -1,18 +1,11 @@
 <?php
 
-define('DS', DIRECTORY_SEPARATOR);
-define('ROOT_PATH', dirname(__DIR__));
-define('APP_PATH', ROOT_PATH . DS . 'application');
-define('VIEW_PATH', APP_PATH . DS . 'view');
-define('LIB_PATH', ROOT_PATH . DS . 'library');
-define('MOD_PATH', APP_PATH . DS . 'model');
-define('PUB_PATH', __DIR__);
-
+require_once 'define.php';
 //////////////////////////////////////////////////////////////////////////////////// ERRORS
 ini_set("display_errors", 1);
 //////////////////////////////////////////////////////////////////////////////////// ERRORS
 
-// Chargement des d�finitions des classes.
+// Chargement des définitions des classes.
 require_once LIB_PATH . DS . 'Request.php';
 require_once LIB_PATH . DS . 'Router.php';
 
@@ -25,6 +18,7 @@ require_once LIB_PATH . DS . 'Controller.php';
 
 require_once MOD_PATH . DS . 'Connect.php';
 require_once MOD_PATH . DS . 'Authentification.php';
+require_once MOD_PATH . DS . 'User.php';
 
 // Instanciation des classes
 $request = Request::getInstance();

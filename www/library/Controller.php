@@ -14,8 +14,7 @@ abstract class Controller implements ControllerInterface
 	{
 		$this->request = $request;
 		$this->response = $response;
-		$this->view = $view;
-		
+		$this->view = $view;	
 	}
 	
 }
