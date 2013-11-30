@@ -12,7 +12,7 @@ class Conversation{
 		$this->id=$id;
 		$this->connect = $connect;
 		$connect = $connect->connect();
-		//On boucle sur le nombre User concerné par la discussion
+		//On boucle sur le nombre User concernÃ© par la discussion
 		$sqlGetUser = "SELECT conversation_userId FROM ".CONVERSATION." WHERE conversation_id = ".$id;
 		$sqlResult = $this->connect->query($sqlGetUser);
 		while($sqlRow = mysqli_fetch_array($sqlResult))
@@ -24,6 +24,10 @@ class Conversation{
 	}
 	
 	function getAllConversation(){
+		
+		/***/
+		$_SESSION["login"] = 3;
+		/***/
 		
 		$sqlSelectDialogues = "SELECT user_id, message_id, message_content, message_date 
 			FROM ".MESSAGE." 

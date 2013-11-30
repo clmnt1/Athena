@@ -18,12 +18,13 @@ class User
 		$sqlSelectUser = "SELECT * FROM ".USER." WHERE user_id = $id";
 		$sqlSelectRes = $this->connect->query($sqlSelectUser);
 		$sqlSelectRet = mysqli_fetch_assoc($sqlSelectRes); 
-		 
-		if($sqlSelectRet){
+		
+		if($sqlSelectRet)
+		{
 			$this->id          = $id;
-			$this->pseudo      = utf8_encode($sqlSelectRet['user_pseudo']);
-			$this->firstName   = utf8_encode($sqlSelectRet['user_firstName']);
-			$this->secondeName = utf8_encode($sqlSelectRet['user_secondName']);
+			$this->pseudo      = $sqlSelectRet['user_pseudo'];
+			$this->firstName   = $sqlSelectRet['user_firstName'];
+			$this->secondName  = $sqlSelectRet['user_secondName'];
 			$this->isLogged    = $sqlSelectRet['user_logged']; 
 		}
 	}
@@ -36,7 +37,7 @@ class User
 	 */
 		$this->isLogged = true;
 		$sqlLogged = "UPDATE ".USER." SET user_logged = 1 WHERE user_id = $cx_id";
-		$this->connect->query($sqlLogged);
+		$this->connection->query($sqlLogged);
 		
 	}
 	
@@ -61,7 +62,8 @@ class User
 		$sqlAllUsers = "SELECT * FROM ".USER;
 		$sqlResult = $this->connect->query($sqlAllUsers);
 		$occ = 0;
-		while($sqlRow = mysqli_fetch_array($sqlResult)){
+		while($sqlRow = mysqli_fetch_array($sqlResult))
+		{
 			$tabReturn[$occ]['firstName'] = $sqlRow['user_firstName'];
 			$tabReturn[$occ]['secondName'] = $sqlRow['user_secondName'];
 			$tabReturn[$occ]['userId'] = $sqlRow['user_id'];
@@ -74,16 +76,19 @@ class User
 	function displayAllUser(){
 		/**
 		 *	Descr  : Affiche les utilisateurs de l'entreprise, ainsi que leurs disponibilitÃ¯Â¿Â½s
-		 *	Auteur : Clï¿½ment Rï¿½gnier
+		 *	Auteur : ClÃ©ment RÃ©gnier
 		 *	Date   : 07/06/2013
 		 */
 		$tabUsers = $this->getAllUser();
-		foreach($tabUsers as $user){
+		foreach($tabUsers as $user)
+		{
 			echo '<tr><td><div id="user_'.$user['userId'].'" class="name" style="cursor:hand;" onClick="addChatWindow('.$user['userId'].')">'.$user['firstName'].' '.$user['secondName'].'</div></td><td>';
-			if($user['logged']){
+			if($user['logged'])
+			{
 				echo '&nbsp;<img src="img/loggedIn.png"></a></td></tr>';
 			}
-			else{
+			else
+			{
 				echo '&nbsp;<img src="img/loggedOut.png"></a></td></tr>';
 			}
 		}
@@ -92,7 +97,7 @@ class User
 	function loadDialogues($idInterlocutor){
 		/**
 		 *	Descr  : Retourne les dialogues existants avec l'interlocuteur sous format HTML
-		 *	Auteur : Clï¿½ment Rï¿½gnier
+		 *	Auteur : Clément Régnier
 		 *	Date   : 08/11/2013
 		 */	
 		$htmlDialogue = "";
@@ -108,7 +113,10 @@ class User
 		$conversation = new Conversation($idDiscussion, $this->connect);
 		
 		//Header conversation
-		$htmlHeader = "<div id ='dialogueHeader'><div class='glyphicon icon-pencil'></div><b>&nbsp;".$userInterlocutor->firstName."&nbsp;".$userInterlocutor->secondName."</b></div>";
+		$htmlHeader = "<div id ='dialogueHeader'>
+							<div class='glyphicon icon-pencil'></div>
+								<b>&nbsp;".$userInterlocutor->firstName."&nbsp;".$userInterlocutor->secondName."</b>
+							</div>";
 		
 		//Contents
 		if($idDiscussion == '')
@@ -124,7 +132,7 @@ class User
 		}
 		$tabReturn[0] = $htmlHeader; // Header de la fenetre de dialogue
 		$tabReturn[1] = $tabTempDialogue[0]; // Message(s)
-		$tabReturn[2] = $tabTempDialogue[1]; // Boolï¿½en - Nouveau message
+		$tabReturn[2] = $tabTempDialogue[1]; // Booléen - Nouveau message
 		return $tabReturn;
 	}
 	

@@ -3,7 +3,7 @@ class TchatController extends Controller
 {
 	
 	public function process(){
- 		$cxID = $_SESSION['id'];
+ 		$cxID = 1/*$_SESSION['id']*/;
  		$this->view->cxID = $cxID;
  		$this->view->objUser = new User($cxID, $this->connection);
 		

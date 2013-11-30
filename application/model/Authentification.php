@@ -22,7 +22,7 @@ class Authentification
 		$this->connected = $connected;
 	}
 	
-	public function checkAuth(array $params, $table){
+	public function checkAuth(array $params, $table, $dest){
 		sleep(2);
 		if($params){
 			
@@ -46,10 +46,10 @@ class Authentification
 					$_SESSION['id'] = $userId;
 					$_SESSION['login'] = $params['login'];
 					$_SESSION['disauth'] = true;
-					return true;
+					var_dump($_SESSION['disauth']);
+					header("location:/" . $dest);
 				}else{
 					$this->infoMessage->setInfoMessage("Mauvais login ou mot de passe", "error");
-					return false;
 				}
 			}
 		}

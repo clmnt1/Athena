@@ -1,7 +1,7 @@
 <?php echo $this->getInfoMessage?>
 
 <div id="conteneur">
-    <h1>Mon tchat, connectez en tant que </h1>
+    <h1>Mon tchat, connecte en tant que </h1>
     <span class="idSpan" id="user-log<?php echo $_SESSION['id']; ?>"><?php echo $_SESSION['login']; ?></span>
     <div class="container-fluid">  
 		<div class="accordion" id="accordion2">  
@@ -29,18 +29,3 @@
     <div id="popup-bar">
     </div>
 </div>
-
-<script type="text/javascript">
-window.onbeforeunload = function() {
-	alert('before');
-	$.ajax({
-	  type: "POST", 
-	  url: '/js/chatAjax.php',  	
-	  data:{type: 'closeDisconnect'}, 
-	  success: function(){
-		  alert('success');
-	  }
-	});
-    return "disconnect user";
-};
-</script>
