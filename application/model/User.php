@@ -37,7 +37,7 @@ class User
 	 */
 		$this->isLogged = true;
 		$sqlLogged = "UPDATE ".USER." SET user_logged = 1 WHERE user_id = $cx_id";
-		$this->connection->query($sqlLogged);
+		$this->connect->query($sqlLogged);
 		
 	}
 	
@@ -97,7 +97,7 @@ class User
 	function loadDialogues($idInterlocutor){
 		/**
 		 *	Descr  : Retourne les dialogues existants avec l'interlocuteur sous format HTML
-		 *	Auteur : Clément Régnier
+		 *	Auteur : Clï¿½ment Rï¿½gnier
 		 *	Date   : 08/11/2013
 		 */	
 		$htmlDialogue = "";
@@ -132,7 +132,7 @@ class User
 		}
 		$tabReturn[0] = $htmlHeader; // Header de la fenetre de dialogue
 		$tabReturn[1] = $tabTempDialogue[0]; // Message(s)
-		$tabReturn[2] = $tabTempDialogue[1]; // Booléen - Nouveau message
+		$tabReturn[2] = $tabTempDialogue[1]; // Boolï¿½en - Nouveau message
 		return $tabReturn;
 	}
 	

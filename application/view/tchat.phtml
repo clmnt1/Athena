@@ -29,3 +29,20 @@
     <div id="popup-bar">
     </div>
 </div>
+
+<script>
+window.onbeforeunload = function() {
+	alert('before');
+	$.ajax({
+	  type: "POST", 
+	  url: '/js/chatAjax.php',  	
+	  data:{type: 'closeDisconnect',
+		  userIdLogged: $_SESSION['id']}, 
+	  success: function(){
+		  alert('success');
+	  }
+	});
+    return "disconnect user";
+};
+
+</script>
