@@ -37,8 +37,8 @@ div#dialogueHeader{
 }
 
 /* Conteneurs du dialogue (des bulles) */
-.dialContents{
-	height: 150px;
+#dialContents{
+	height: 160px;
 	overflow: auto;
 }
 
@@ -73,7 +73,7 @@ div#answer{
 }
 
 /* Zone du texte/réponse */
-textarea.txaMessage {
+textarea#txaMessage {
  	resize: none;
 	margin-right: 10px;
 	margin-left: 10px;

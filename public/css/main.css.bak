@@ -17,7 +17,7 @@
 }
 .popup{
 	width: 200px;
-	height: 280px;
+	height: 270px;
 	float: right;
 	position: relative;
 	display: inline-block;

@@ -97,7 +97,7 @@ class User
 	function loadDialogues($idInterlocutor){
 		/**
 		 *	Descr  : Retourne les dialogues existants avec l'interlocuteur sous format HTML
-		 *	Auteur : Clément Régnier
+		 *	Auteur : Cl�ment R�gnier
 		 *	Date   : 08/11/2013
 		 */	
 		$htmlDialogue = "";
@@ -117,6 +117,7 @@ class User
 							<div class='glyphicon icon-pencil'></div>
 								<b>&nbsp;".$userInterlocutor->firstName."&nbsp;".$userInterlocutor->secondName."</b>
 							</div>";
+		
 		//Contents
 		if($idDiscussion == '')
 		{
@@ -125,17 +126,14 @@ class User
 			$sqlInsertIdConversation = "INSERT INTO ". CONVERSATION . " VALUES ( '',".$this->id.")";
 			$sqlResult = $this->connect->query($sqlInsertIdConversation);
 			$sqlInsertIdConversationOther = "INSERT INTO ". CONVERSATION . " VALUES (LAST_INSERT_ID(),".$userInterlocutor->id.")";
-			$idDiscussion = mysqli_insert_id();
 			$sqlResultOther = $this->connect->query($sqlInsertIdConversationOther);	
-			
 		}else{
-			$tabTempDialogue = $conversation->getAllConversation($idUserLoggedAjax);
+			$tabTempDialogue = $conversation->getAllConversation();
 		}
 		$tabReturn[0] = $htmlHeader; // Header de la fenetre de dialogue
 		$tabReturn[1] = $tabTempDialogue[0]; // Message(s)
-		$tabReturn[2] = $tabTempDialogue[1]; // Booléen - Nouveau message
-		$tabReturn[3] = $idDiscussion; // Booléen - Nouveau message
-		
-	return $tabReturn;
+		$tabReturn[2] = $tabTempDialogue[1]; // Bool�en - Nouveau message
+		return $tabReturn;
 	}
+	
 }

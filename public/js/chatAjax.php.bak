@@ -28,14 +28,11 @@
 		
 		case "setMessage" : 
 			if($messageAjax <> ""){
-	
+				
 				//Traitement du message
 				$messageAjax = addslashes($messageAjax);
-				$messageAjax = str_replace(CHR(13).CHR(10),"",$messageAjax);
-				$messageAjax = str_replace(CHR(9),"",$messageAjax);
-					
-				$valid = $usersConversation->setDialogue($messageAjax, $userConnect->id);
-				$result = $usersConversation->getAllConversation($idUserLoggedAjax);
+				//$valid = $usersConversation->setDialogue($messageAjax, $userLogged->id);
+				//$result = $usersConversation->getAllConversation();
 				echo '{ "content" : "'.$result[0].'"}';
 			}
 			else{
@@ -45,18 +42,18 @@
 		
 		case "getMessage" :
 			if($newPopupAjax == true){
-			$result = $userConnect->loadDialogues($idInterlocuteurAjax);
-			$i = 0;
-			foreach($result as $ligneResult){
-				$result[$i] = str_replace(CHR(13).CHR(10),"",$ligneResult);
-				$result[$i] = str_replace(CHR(9),"",$result[$i]);
-				$i++;
-			}
-			//On va cherche le nouveau dialogue
-			echo '{ "success" : true, "content" : "'.$result[1].'" , "header" : "'.$result[0].'" ,"conversation" : "'.$result[3].'" }';
+				$result = $userConnect->loadDialogues($idInterlocuteurAjax);
+				$i = 0;
+				foreach($result as $ligneResult){
+					$result[$i] = str_replace(CHR(13).CHR(10),"",$ligneResult);
+					$result[$i] = str_replace(CHR(9),"",$result[$i]);
+					$i++;
+				}
+				//On va cherche le nouveau dialogue
+				echo '{ "success" : true, "content" : "'.$result[1].'" , "header" : "'.$result[0].'" ,"newMessage" : "'.$result[2].'" }';
 			}
 			elseif($idConversationAjax != ""){
-				$result = $usersConversation->getAllConversation($idUserLoggedAjax);
+				$result = $usersConversation->getAllConversation();
 				if($lastMessageAjax < ($result[1]*2+2)){
 					echo '{ "success" : true, "content" : "'.$result[0].'" , "newMessage" : true }';
 				}

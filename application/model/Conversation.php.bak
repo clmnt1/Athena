@@ -23,7 +23,11 @@ class Conversation{
 		}
 	}
 	
-	function getAllConversation($idUserLoggedAjax){
+	function getAllConversation(){
+		
+		/***/
+		$_SESSION["login"] = 3;
+		/***/
 		
 		$sqlSelectDialogues = "SELECT user_id, message_id, message_content, message_date 
 			FROM ".MESSAGE." 
@@ -34,7 +38,7 @@ class Conversation{
 		$sqlResultDialogues = $this->connect->query($sqlSelectDialogues);
 		while($sqlRowDialogues = mysqli_fetch_array($sqlResultDialogues))
 		{	
-			if($idUserLoggedAjax == $sqlRowDialogues['user_id']){
+			if($_SESSION["login"] == $sqlRowDialogues['user_id']){
 				$classUser = "userYourSelf";
 			}else{
 				$classUser = "userOther";

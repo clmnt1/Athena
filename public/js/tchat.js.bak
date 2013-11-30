@@ -31,17 +31,14 @@
                       });
 				  },3000);	 */ 
 					  
-			      /*var setDialogue = $("#btnAddPost").click(function(event){
-
-					  alert("test");
+			      var setDialogue = $("#btnAddPost").click(function(event){
 			    	  $.ajax({
                           type: "POST",
                           url: "/js/chatAjax.php",
 	                      dataType: "json",
                           data: {
-                              type: 'setMessage', 
+                              type: 'setMessage',
                         	  message: $("#txaMessage").val(),
-        	                  userIdLogged: id[1],
                         	  //Il faut chercher l'id du bouton ou de la fenetre ou autre mais propre � la conversation
                         	  conversation: '1'
 						  },
@@ -53,31 +50,24 @@
                         	  //$("#dialContents").mCustomScrollbar({});
                           }
                       });
-			      });*/
+			      });
 			  });
 
 			  $(document).keypress(function(e) {
-				  
-				  var idTxtArea = e.target.id;
-				  var idConversation = idTxtArea.split("_");
-				  var idUserTemp = $(".idSpan").attr('id');
-				  var idUser = idUserTemp.split("log");
-				  
-				  if($("#"+idTxtArea).is(":focus") && e.which == 13) {
+			      if($("#txaMessage").is(":focus") && e.which == 13) {
 			    	  $.ajax({
                           type: "POST",
                           url: "/js/chatAjax.php",
-       	                  dataType: "json",
                           data: {
                               type: 'setMessage',
-                        	  message: $("#"+idTxtArea).val(),
-                        	  userIdLogged: idUser[1],
-                        	  conversation: idConversation[1]
+                        	  message: $("#txaMessage").val(),
+                        	  //Il faut chercher l'id du bouton ou de la fenetre ou autre mais propre � la conversation
+                        	  conversation: '1'
 						  },
                           success: function(msg){
-                        	  $("#dialContents_" + idConversation[1]).html(msg.content);
-                        	  $("#"+idTxtArea).val("");
-                        	  $("#dialContents_" + idConversation[1]).scrollTop($(document).height());
+                        	  $("#dialContents").html(msg);
+                        	  $("#txaMessage").val("");
+                        	  $("#dialContents").scrollTop($(document).height());
                           }
                       });
 			      }
