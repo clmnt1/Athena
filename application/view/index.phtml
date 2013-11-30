@@ -1,0 +1,43 @@
+<?php echo $this->getInfoMessage?>
+    
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+          <h1>Bienvenue !</h1>
+          <p>Pour utiliser le tchat, Veuillez vous identifier.</p>
+          <form action="" method="post">
+            <div class="form-group">
+              <input type="text" placeholder="Login" class="form-control" name="login">
+            </div>
+            <div class="form-group">
+              	<input type="password" placeholder="Mot de passe" class="form-control" name="password">
+            </div>
+            <div class="form-group">
+            	<button type="submit" class="btn btn-success" name="log">Se connecter</button>
+          		<button type="button" class="btn btn-default" name="inscript" data-toggle="collapse" data-target="#inscriptChat">S'inscrire</button>
+         	</div>
+          </form>
+          
+          <form action="" method="post">
+          	<div id="inscriptChat" class="collapse">
+	            <div class="form-group">
+	              <input type="text" placeholder="Nom" class="form-control" name="surName">
+	            </div>
+	            <div class="form-group">
+	              <input type="text" placeholder="Prénom" class="form-control" name="firstName">
+	            </div>
+	            <div class="form-group">
+	              <input type="text" placeholder="Login" class="form-control" name="login">
+	            </div>
+	            <div class="form-group">
+	              <input type="password" placeholder="Mot de passe" class="form-control" name="password">
+	            </div>
+	            <div class="form-group">
+	              <input type="password" placeholder="Confirmation du mot de passe" class="form-control" name="confPassword">
+	            </div>
+	            <button type="submit" class="btn btn-primary" name="reg">S'enregistrer</button>
+            </div>
+          </form>
+          
+        </div>
+      </div>

@@ -9,20 +9,25 @@
         <title>Athena</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+		
         <style>
             body {
                 padding-top: 50px;
                 padding-bottom: 20px;
             }
         </style>
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="<?php echo BOOTSTRAP_CSS ?>">
+        <link rel="stylesheet" href="<?php echo BOOTSTRAP_THEME_CSS ?>">
+        <link rel="stylesheet" href="<?php echo BOOTSTRAP_RESPONSIVE_CSS ?>">
+        <link rel="stylesheet" href="<?php echo ATHENA_CSS ?>">
+        <link rel="stylesheet" href="<?php echo GLYPHICONS_CSS ?>">
+        
         <link rel="stylesheet" href="css/main.css">
-
-        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-        <script src="js/vendor/jquery-1.10.1.min.js"></script>
-        <script src="js/tchat.js"></script>
+        <script src="<?php echo MODERNIZR ?>"></script>
+        <script src="<?php echo JQUERY ?>"></script>
+        <script src="<?php echo TCHAT ?>"></script>
+<!--        <link href="css/custom-scrollbar-plugin/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" /> -->
+<!-- 		<script src="js/plugins/custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script> -->
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -39,7 +44,7 @@
           <a class="navbar-brand" href="/index">Athena</a>
         </div>
         <div class="navbar-collapse collapse">
-        <?php if(empty($_SESSION['authentified']) || $_SESSION['authentified'] == false): ?>
+        <?php if(empty($_SESSION['disauth']) || $_SESSION['disauth'] == false): ?>
           <form class="navbar-form navbar-right">
             <div class="form-group">
               <input type="text" placeholder="Login" class="form-control" name="login">
@@ -50,7 +55,7 @@
             <button type="submit" class="btn btn-success"  name="log">Sign in</button>
           </form>
         <?php else:?>
-        	<a href="/index?disauth=true">Se déconnecter</a>  
+        	<a href="/index?disauth=disconnect">Se déconnecter</a>
         <?php endif;?>
         </div><!--/.navbar-collapse -->
       </div>
