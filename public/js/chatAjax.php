@@ -23,7 +23,6 @@
 	$connect_conv = new Connect($db);
 	$userConnect = new User(intval($idUserLoggedAjax), $connect_conv);
 	$usersConversation = new Conversation($idConversationAjax, $connect_conv);
-	
 	switch($typeAjax){
 		
 		case "setMessage" : 
@@ -33,9 +32,11 @@
 				$messageAjax = addslashes($messageAjax);
 				$messageAjax = str_replace(CHR(13).CHR(10),"",$messageAjax);
 				$messageAjax = str_replace(CHR(9),"",$messageAjax);
-					
-				$valid = $usersConversation->setDialogue($messageAjax, $userConnect->id);
+				
+				$valid = $usersConversation->setMessage($messageAjax, $userConnect->id);
 				$result = $usersConversation->getAllConversation($idUserLoggedAjax);
+				$result = $usersConversation->parserJson($result);
+				
 				echo '{ "content" : "'.$result[0].'"}';
 			}
 			else{
@@ -45,18 +46,13 @@
 		
 		case "getMessage" :
 			if($newPopupAjax == true){
-			$result = $userConnect->loadDialogues($idInterlocuteurAjax);
-			$i = 0;
-			foreach($result as $ligneResult){
-				$result[$i] = str_replace(CHR(13).CHR(10),"",$ligneResult);
-				$result[$i] = str_replace(CHR(9),"",$result[$i]);
-				$i++;
-			}
-			//On va cherche le nouveau dialogue
-			echo '{ "success" : true, "content" : "'.$result[1].'" , "header" : "'.$result[0].'" ,"conversation" : "'.$result[3].'" }';
+				$result = $userConnect->loadDialogues($idInterlocuteurAjax);
+				$result = $usersConversation->parserJson($result);
+				echo '{ "success" : true, "content" : "'.$result[1].'" , "header" : "'.$result[0].'" ,"conversation" : "'.$result[3].'" }';
 			}
 			elseif($idConversationAjax != ""){
 				$result = $usersConversation->getAllConversation($idUserLoggedAjax);
+				$result = $usersConversation->parserJson($result);
 				if($lastMessageAjax < ($result[1]*2+2)){
 					echo '{ "success" : true, "content" : "'.$result[0].'" , "newMessage" : true }';
 				}
@@ -69,6 +65,29 @@
 			
 		break;
 		
+		case "getMessagePeriodic" :
+			
+			//On récupère tout les id de conversation du l'utilisateur connecté
+			$resListId = $userConnect->getAllConversationId();
+			$jsonReturn = '[';
+			foreach($resListId as $convId)
+			{	
+							
+				$objConvId = new Conversation($convId, $connect_conv);
+				$result = $objConvId->getAllConversation($userConnect->id);
+				if($result[1]){
+					var_dump($result[1]);
+					$jsonReturn .= '{ "content" : "'.$result[1].'" , 
+							"header" : "'.$result[0].'" ,
+							"conversation" : "'.$result[3].'", 
+							"user" : "'.$result[2].'" },';
+				}
+			}
+			$jsonReturn .= substr($jsonReturn, 0, -1);
+			$jsonReturn .= ']';
+			//$jsonReturn = $usersConversation->parserJson($jsonReturn);
+			echo $jsonReturn;
+			
 		default;
 		 
 		break;

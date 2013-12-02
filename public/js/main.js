@@ -63,7 +63,6 @@ popup = {
 						'</form>' +
 					'</div>' +
 				'</div>';
-			
 			$('.popup').hide();
 			$('#popup-bar').append(popup.content);
 			$('.popup').show('fast');

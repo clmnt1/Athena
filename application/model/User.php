@@ -82,6 +82,9 @@ class User
 		$tabUsers = $this->getAllUser();
 		foreach($tabUsers as $user)
 		{
+			if($_SESSION['id'] == $user['userId']){
+				continue;
+			}
 			echo '<tr><td><div id="user_'.$user['userId'].'" class="name" style="cursor:hand;" onClick="addChatWindow('.$user['userId'].')">'.$user['firstName'].' '.$user['secondName'].'</div></td><td>';
 			if($user['logged'])
 			{
@@ -129,7 +132,7 @@ class User
 			$sqlResultOther = $this->connect->query($sqlInsertIdConversationOther);	
 			
 		}else{
-			$tabTempDialogue = $conversation->getAllConversation($idUserLoggedAjax);
+			$tabTempDialogue = $conversation->getAllConversation($this->id);
 		}
 		$tabReturn[0] = $htmlHeader; // Header de la fenetre de dialogue
 		$tabReturn[1] = $tabTempDialogue[0]; // Message(s)
@@ -137,5 +140,19 @@ class User
 		$tabReturn[3] = $idDiscussion; // Booléen - Nouveau message
 		
 	return $tabReturn;
+	}
+	
+	//Retourn la liste des ID dont l'utilisateur fait partie
+	function getAllConversationId(){
+		$sqlGetDialogue = "SELECT DISTINCT conversation_id FROM ".CONVERSATION."
+		WHERE conversation_userId = $this->id";
+		$sqlResult = $this->connect->query($sqlGetDialogue);
+		$tabDialogueId = array();
+		$i = 0;
+		while($idRowDiscussion = mysqli_fetch_array($sqlResult)){
+			$tabDialogueId[$i] = $idRowDiscussion['conversation_id'];
+			$i++;
+		}
+		return $tabDialogueId;
 	}
 }
