@@ -1,3 +1,4 @@
+
 (function($){
 		$(window).load(function(){
 			var totalScrollOffsetH=$(".totalScrollOffset").height();
@@ -25,23 +26,20 @@
                   type: 'getMessagePeriodic',
                   userIdLogged: idUser[1]
 			  },
-              success: function(data){
-            	  //Si au moins 1 nouveau message
-            	  if(data.occurence > 0)
-            	  {
-            		  for(var i = 0; i<data.occurence; i++){
-            			  
-            			  
-            			  var user = data.user[i];
-            			  //Cas de la fenetre déja ouverte
-            			  //if($(".user_"+data.user.i)){
-            				  console.log(user);
-            				 
-            			  //}
-            			  //Cas d'une nouvelle fenetre
-            			  
-            		  }
-            	  }
+              success: function(response){
+            	  $(function() {
+            		  $.each(response, function(i, item) {
+        		          //Cas d'une fenetre déja ouverte
+	        			  if($('#user_'+item.user).is(":visible")){
+	        				  
+	        			  }
+	        			  //Cas d'une nouvrelle fenetre
+	        			  else{
+	        				  popup = addChatWindow(userId);
+	        				  
+	        			  }
+            		  });
+        		  });
                   /*if(data.newMessage == true){
                 	  $("#dialContents .mCSB_container").html(data.content);
                 	  $("#dialContents_" + idConversation[1]).mCustomScrollbar("update");
@@ -49,7 +47,7 @@
                   }*/
               }
           });
-	  },3000);
+	  },5000);
   });
 
   $(document).keypress(function(e) {
