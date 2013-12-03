@@ -3,26 +3,25 @@
 <div id="conteneur">
     <h1>Mon tchat, connecte en tant que </h1>
     <span class="idSpan" id="user-log<?php echo $_SESSION['id']; ?>"><?php echo $_SESSION['login']; ?></span>
-    <div class="container-fluid">  
-		<div class="accordion" id="accordion2">  
-			<div class="accordion-group">  
-				 <div class="accordion-heading">  
-					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">  
-						Users 
-					</a>
+    <div class="right-column">
+	    <div class="container-fluid">  
+			<div class="accordion" id="accordion2">  
+				<div class="accordion-group">  
+					 <div class="accordion-heading">  
+						<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">  
+							Utilisateurs connectés 
+						</a>
+					</div>
 				</div>
+			</div>  
+		 </div>
+		<div id="collapseOne" class="accordion-body collapse" style="height: 0px; ">  
+			<div id="name-list" class="accordion-inner"> 
+				<table>
+		        	<?php $this->objUser->displayAllUser();?>
+				</table>
 			</div>
-		</div>  
-	 </div>  
-	<div id="collapseOne" class="accordion-body collapse" style="height: 0px; ">  
-		<div id="name-list" class="accordion-inner"> 
-			<table>
-	        <?php $this->objUser->displayAllUser();?>
-	<!--     	<p class="name item1">Item 1</p> -->
-	<!--     	<p class="name item2">Item 2</p> -->
-	<!--     	<p class="name item3">Item 3</p> -->
-			</table>
-		</div>
+	    </div>
     </div>
     <div id="connected">
     </div>

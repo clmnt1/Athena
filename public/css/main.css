@@ -44,15 +44,133 @@
 }
 
 
+body{
+	min-height: 700px;
+	padding-top: 65px;
+	background: #EEEEEE url('../img/bg_index.png') center no-repeat;
+}
+
+/* ================================= HEADER ================================= */
+.navbar-inverse{
+	height: 65px;
+	box-shadow: 0px 3px 2px grey;
+	background: #222222;
+}
+.navbar-collapse{
+	float: right;
+	padding: 22px 15px !important;
+	text-align: right;
+}
+.navbar-collapse:hover{
+	background: #D86B21;	
+}
+.navbar-collapse a{
+	color: #964106;
+	font-weight: bold;
+}
+.navbar-collapse:hover a{
+	color: 4C2306;
+	text-decoration: none;
+	font-weight: bold;
+}
+/* ========================================================================== */
 
 
+/* ================================= CONTENT ================================ */
+.btn-success{
+	border: 1px solid #BC560F;
+	background-image: linear-gradient(to bottom, #D86B21 0%, #BC560F 100%);
+}
+
+h1{
+	width: 580px;
+}
+
+.right-column{
+	position: absolute;
+	top: 65px;
+	right: 0;
+	width: 150px;
+	height: 100%;
+	background: white;
+	box-shadow: -2px 0px 2px grey;
+}
+.right-column .container-fluid{
+	width: 100%;
+	height: 70px;
+	background: #D86B21;
+}
+.right-column .container-fluid .accordion-toggle{
+	display: block;
+	width: 150px;
+	height: 90px;
+	padding: 15px 15px 10px 15px;
+	text-align: center;
+	font-weight: bold;
+	color: #964106;
+	background-image: url('../img/top-arrow.png');
+	background-repeat: no-repeat;
+	background-position: 100px 55px;
+	transition: background-position 0.3s ease 0s;
+}
+.right-column .container-fluid .accordion-toggle:hover{
+	text-decoration: none;
+	color: #EEEEEE;
+	background-position: 100px 50px;
+	transition: background-position 0.3s ease 0s;
+}
+.right-column .container-fluid .accordion-toggle.collapsed{
+	background-image: url('../img/bottom-arrow.png') !important;
+	background-repeat: no-repeat;
+	background-position: 100px 60px;
+	transition: background-position 0.3s ease 0s;
+}
+.right-column .container-fluid .accordion-toggle.collapsed:hover{
+	background-image: url('../img/bottom-arrow.png') !important;
+	background-position: 100px 70px;
+	transition: background-position 0.3s ease 0s;
+}
+.right-column .container-fluid .accordion-toggle:focus, .right-column .container-fluid .accordion-toggle:active{
+	border: 0 none;
+	text-decoration: none;
+}
+
+#collapseOne{
+	width: 150px;
+}
+
+#name-list{
+	padding: 30px 0;
+	background: #EEEEEE;
+}
+#name-list table{
+	width: 150px;
+}
+#name-list table tr.blank{
+	height: 15px;
+}
+#name-list table tr td{
+	padding-right: 5px;
+	text-align: right;
+	color: #222222;
+}
+#name-list table tr td:hover{
+	background: #CCCCCC;
+	color: black;
+}
+/* ========================================================================== */
 
 
-
-
-
-
-
+/* ================================= FOOTER ================================= */
+footer{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	padding: 15px 30px;
+	border-top: 1px solid #7F7F7F;
+	background: #CCCCCC;
+}
+/* ========================================================================== */
 
 
 

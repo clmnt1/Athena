@@ -85,15 +85,15 @@ class User
 			if($_SESSION['id'] == $user['userId']){
 				continue;
 			}
-			echo '<tr><td><div id="user_'.$user['userId'].'" class="name" style="cursor:hand;" onClick="addChatWindow('.$user['userId'].')">'.$user['firstName'].' '.$user['secondName'].'</div></td><td>';
 			if($user['logged'])
 			{
-				echo '&nbsp;<img src="img/loggedIn.png"></a></td></tr>';
+				$img = '&nbsp;<img src="img/loggedIn.png" title="connecté">';
 			}
 			else
 			{
-				echo '&nbsp;<img src="img/loggedOut.png"></a></td></tr>';
+				$img = '&nbsp;<img src="img/loggedOut.png" title="non-connecté">';
 			}
+			echo '<tr class="blank"></tr><tr><td>'.$img.'</td><td><div id="user_'.$user['userId'].'" class="name" style="cursor:hand;" onClick="addChatWindow('.$user['userId'].')">'.$user['firstName'].' '.$user['secondName'].'</div></td></tr>';
 		}
 	}
 	
