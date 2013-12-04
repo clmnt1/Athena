@@ -30,10 +30,11 @@
             	  $(function() {
             		  $.each(response, function(i, item) {
         		          //Cas d'une fenetre déja ouverte
+            			  console.log($('#user_'+item.user).is(":not(:hidden)"));
 	        			  if($('#user_'+item.user).is(":visible")){
 	                    	  $("#dialContents_" + item.conversation).html(item.content);
 	                    	  console.log(item.content);
-	                    	  $("#dialContents_" + item.conversation).scrollTop($(document).height()*2);
+	                    	  $("#dialContents_" + item.conversation).scrollTop($(document).height()*200);
 	                    	  $('i').contents().unwrap().wrap('<p/>');
 	        			  }
 	        			  //Cas d'une nouvrelle fenetre
@@ -73,7 +74,7 @@
               success: function(msg){
             	  $("#dialContents_" + idConversation[1]).html(msg.content);
             	  $("#"+idTxtArea).val("");
-            	  $("#dialContents_" + idConversation[1]).scrollTop($(document).height()*2);
+            	  $("#dialContents_" + idConversation[1]).scrollTop($(document).height()*200);
               }
           });
       }

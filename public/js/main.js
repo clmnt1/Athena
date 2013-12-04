@@ -43,7 +43,7 @@ popup = {
 					},
 	                success: function(data){
 	                	popup.open(popup.parentId, data.content, data.header, data.conversation);
-                    	$("#dialContents_" + data.conversation).scrollTop($(document).height()*2);
+                    	$("#dialContents_" + data.conversation).scrollTop($(document).height()*200);
 	                	if(data.newMessage == true){
 	                  	  $("#dialContents .mCSB_container").html(data.content);
 	                  	  $("#dialContents").mCustomScrollbar("update");
@@ -59,7 +59,7 @@ popup = {
 		
 		open : function(parentId, content, header, conversation){
 			popup.content = 
-				'<div class="popup" id="' + parentId + '">' +
+				'<div class="popup" id="user_' + parentId + '">' +
 					'<div class="popup-title">' + header + '<div class="close-btn">x</div></div>' +
 						'<div id="dialContents_' + conversation + '" class="dialContents">' + content + '</div>' +
 						'<div id="tchatForm">' +
@@ -71,7 +71,7 @@ popup = {
 			$('.popup').hide();
 			$('#popup-bar').append(popup.content);
 			$('.popup').show('fast');
-        	$("#dialContents_" + popup.conversation).scrollTop($(document).height()*2);
+        	$("#dialContents_" + popup.conversation).scrollTop($(document).height()*4);
 			$('.close-btn').click(function(){
 				popup.self = $(this);
 				popup.self.parent().parent().hide(500);
