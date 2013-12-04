@@ -5,6 +5,10 @@ function addChatWindow(userId){
 	popup.init(userId);
 }
 
+function openWindow(userId, content, header, conversation){
+	popup.open(userId, content, header, conversation);
+}
+
 popup = {
 		id : 0,
 		init : function(userId){
@@ -32,13 +36,14 @@ popup = {
 	                    type: 'getMessage',
 	                    newPopup: true,
 	                    userIdLogged: id[1],
-	                    userIdInterlocuteur: userId,
+	                    userIdInterlocuteur: userId
 	                    //lastMessage: $("#dialContents").children().children().children().length,
 	              	    //Il faut chercher les id des panels actifs
 	              	    //conversation: '1'
 					},
 	                success: function(data){
 	                	popup.open(popup.parentId, data.content, data.header, data.conversation);
+                    	$("#dialContents_" + data.conversation).scrollTop($(document).height()*2);
 	                	if(data.newMessage == true){
 	                  	  $("#dialContents .mCSB_container").html(data.content);
 	                  	  $("#dialContents").mCustomScrollbar("update");
@@ -66,6 +71,7 @@ popup = {
 			$('.popup').hide();
 			$('#popup-bar').append(popup.content);
 			$('.popup').show('fast');
+        	$("#dialContents_" + popup.conversation).scrollTop($(document).height()*2);
 			$('.close-btn').click(function(){
 				popup.self = $(this);
 				popup.self.parent().parent().hide(500);

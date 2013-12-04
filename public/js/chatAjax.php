@@ -70,19 +70,23 @@
 			//On récupère tout les id de conversation du l'utilisateur connecté
 			$resListId = $userConnect->getAllConversationId();
 			$jsonReturn = "";
+			$newContent = false;
 			$jsonReturn = '[';
 			foreach($resListId as $convId)
-			{				
+			{			
+				
 				$objConvId = new Conversation($convId, $connect_conv);
 				$result = $objConvId->getAllConversation($userConnect->id);
 				if($result[1]){
-					$jsonReturn .= '{ "content" : "'.$result[1].'" , 
-							"header" : "'.$result[0].'" ,
+					$newContent = true;
+					$jsonReturn .= '{ "content" : "'.$result[0].'" , 
+							"header" : "'.$result[4].'" ,
 							"conversation" : "'.$result[3].'", 
 							"user" : "'.$result[2].'" },';
 				}
 			}
-			$jsonReturn = substr($jsonReturn, 0, -1);
+			if($newContent)
+				$jsonReturn = substr($jsonReturn, 0, -1);
 			$jsonReturn .= ']';
 			$jsonReturn = str_replace(CHR(13).CHR(10),"",$jsonReturn);
 			$jsonReturn = str_replace(CHR(9),"",$jsonReturn);

@@ -56,8 +56,8 @@ class Conversation{
 					}
 				}
 				if($isNew){
-					//$sqlUpdateMessageRidden = "UPDATE ".MESSAGE. " SET message_ridden = '".$newParams."' WHERE message_id = ".$sqlRowDialogues['message_id'];
-					//$this->connect->query($sqlUpdateMessageRidden);
+					$sqlUpdateMessageRidden = "UPDATE ".MESSAGE. " SET message_ridden = '".$newParams."' WHERE message_id = ".$sqlRowDialogues['message_id'];
+					$this->connect->query($sqlUpdateMessageRidden);
 				}
 			}
 			if($idUserLoggedAjax == $sqlRowDialogues['user_id']){
@@ -76,6 +76,13 @@ class Conversation{
 			$retourContent .= "</span>";
 		}
 		
+		$objUser = new User($userId, $this->connect);
+		//Construction du header
+		$header = "<div id ='dialogueHeader'>
+		<div class='glyphicon icon-pencil'></div>
+		<b>&nbsp;".$objUser->firstName."&nbsp;".$objUser->secondName."</b>
+		</div>";
+		
 		$numChild = mysqli_num_rows($sqlResultDialogues);
 		//Si pas de message
 		if($numChild == 0){
@@ -87,7 +94,7 @@ class Conversation{
 		$tabReturn[1] = $isNewMessage;
 		$tabReturn[2] = $userId;
 		$tabReturn[3] = $this->id;
-		
+		$tabReturn[4] = $header;
 		return $tabReturn;
 	}
 	

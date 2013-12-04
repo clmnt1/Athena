@@ -31,12 +31,14 @@
             		  $.each(response, function(i, item) {
         		          //Cas d'une fenetre déja ouverte
 	        			  if($('#user_'+item.user).is(":visible")){
-	        				  
+	                    	  $("#dialContents_" + item.conversation).html(item.content);
+	                    	  console.log(item.content);
+	                    	  $("#dialContents_" + item.conversation).scrollTop($(document).height()*2);
+	                    	  $('i').contents().unwrap().wrap('<p/>');
 	        			  }
 	        			  //Cas d'une nouvrelle fenetre
 	        			  else{
-	        				  popup = addChatWindow(userId);
-	        				  
+	        				  popup = openWindow(item.user, item.content, item.header, item.conversation); 
 	        			  }
             		  });
         		  });
@@ -71,7 +73,7 @@
               success: function(msg){
             	  $("#dialContents_" + idConversation[1]).html(msg.content);
             	  $("#"+idTxtArea).val("");
-            	  $("#dialContents_" + idConversation[1]).scrollTop($(document).height());
+            	  $("#dialContents_" + idConversation[1]).scrollTop($(document).height()*2);
               }
           });
       }
